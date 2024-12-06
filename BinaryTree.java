@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class BinaryTree implements Tree{
-    protected String value;
+    protected Object value;
     protected BinaryTree left, right;
     BinaryTree(Object i){
         this.value = i;
