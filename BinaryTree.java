@@ -37,7 +37,7 @@ public class BinaryTree implements Tree{
         if (this.left != null){
             if (this.left.isLeaf()){
                 if (this.left.getValue() == i){ 
-                    System.out.println("REMOVELEFT");
+                    // System.out.println("REMOVELEFT");
                     this.left = null;
                     
                 }
@@ -47,15 +47,13 @@ public class BinaryTree implements Tree{
         if (this.right != null){
             if (this.right.isLeaf()){
                 if (this.right.getValue() == i){ 
-                    System.out.println("REMOVERIGHT");
+                    // System.out.println("REMOVERIGHT");
                     this.right = null;
                     
                 }
             }
             else this.right.removeNode(i); 
         }
-
-
     }
 
     protected boolean isLeaf(){
