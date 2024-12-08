@@ -28,7 +28,7 @@ public class BinarySearchTreeString extends BinarySearchTree {
         System.out.println(a);
 
         System.out.println("\nTest d’existence de nœuds");
-        String[] tests_existence = "abcde".split("");
+        String[] tests_existence = "acek".split("");
         for(String c : tests_existence){
             System.out.println(c + " dans l’arbre ? " + a.exists(c));
         }
