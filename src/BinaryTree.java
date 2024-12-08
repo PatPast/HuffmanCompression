@@ -104,6 +104,9 @@ public class BinaryTree implements Tree{
     }
 
     public static void main(String[] args) {
+        System.out.println("Test d’arbre binaire : ");
+
+        System.out.println("\nCréation de l’arbre et ajout de nœuds");
         BinaryTree a = new BinaryTree(5);
         a.addNode(4);
         a.addNode(6);
@@ -113,22 +116,22 @@ public class BinaryTree implements Tree{
         a.addNode(22);
         a.addNode(22);
 
-        // System.err.println(a);
-        // System.out.println(a.display(1));
+        System.out.println("\nAffichage");
         System.out.println(a);
+
+        System.out.println("\nTest d’existence de nœuds");
         for(int i = 0; i < 8; i++){
-            System.out.println(a.exists(i));
+            System.out.println(i + " dans l’arbre ? " + a.exists(i));
         }
+
+        System.out.println("\nTest du calcul de hauteur");
         System.out.println(a.getHeight());
-
         
-        a.removeNode(22);
-        System.out.println(a);
-        a.removeNode(22);
-        System.out.println(a);
-        a.removeNode(22);
-        System.out.println(a);
-
+        Integer[] tests_suppression = {22,22,5,32,6};
+        for (int i : tests_suppression) {
+            System.out.println("\nTest de suppression d’un nœud " + i);
+            a.removeNode(i);
+            System.out.println(a);
+        }
     }
-    
 }
