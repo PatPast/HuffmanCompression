@@ -42,15 +42,14 @@ public abstract class BinarySearchTree extends BinaryTree {
     public boolean exists(Object i) {
         if (this.compareTo(i) == 0)
             return true;
+        boolean is_found = false;
         if (this.compareTo(i) > 0 && this.left != null)
-            return this.left.exists(i);
+            is_found = is_found || this.left.exists(i);
         if (this.compareTo(i) < 0 && this.right != null)
-            return this.right.exists(i);
-        return false;
+            is_found = is_found || this.right.exists(i);
+        return is_found;
     }
 
     public abstract int compareTo(Object i);
 
-
-    
 }
