@@ -104,7 +104,7 @@ public class BinaryTree implements Tree{
     }
 
     public static void main(String[] args) {
-        System.out.println("Test d’arbre binaire : ");
+        System.out.println("Test d’arbre binaire");
 
         System.out.println("\nCréation de l’arbre et ajout de nœuds");
         BinaryTree a = new BinaryTree(5);

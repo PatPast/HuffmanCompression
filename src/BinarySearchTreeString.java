@@ -9,6 +9,9 @@ public class BinarySearchTreeString extends BinarySearchTree {
     }
 
     public static void main(String[] args) {
+        System.out.println("Test d’arbre binaire de recherche de chaines de caractères");
+
+        System.out.println("\nCréation de l’arbre et ajout de nœuds");
         BinarySearchTreeString a = new BinarySearchTreeString("c");
         a.addNode("b");
         a.addNode("a");
@@ -21,23 +24,23 @@ public class BinarySearchTreeString extends BinarySearchTree {
         a.addNode("e");
         a.addNode("e");
 
-        // System.err.println(a);
-        // System.out.println(a.display(1));
-        String[] test = "abcde".split("");
+        System.out.println("\nAffichage");
         System.out.println(a);
-        for(String c : test){
-            System.out.print(a.exists(c));
-            System.out.println(" " + c);
+
+        System.out.println("\nTest d’existence de nœuds");
+        String[] tests_existence = "abcde".split("");
+        for(String c : tests_existence){
+            System.out.println(c + " dans l’arbre ? " + a.exists(c));
         }
+
+        System.out.println("\nTest du calcul de hauteur");
         System.out.println(a.getHeight());
 
-        
-        a.removeNode("e");
-        System.out.println(a);
-        a.removeNode("e");
-        System.out.println(a);
-        a.removeNode("e");
-        System.out.println(a);
+        String[] tests_suppression = "eeeazc".split("");
+        for (String c : tests_suppression) {
+            System.out.println("\nTest de suppression d’un nœud " + c);
+            a.removeNode(c);
+            System.out.println(a);
+        }
     }
-    
 }
