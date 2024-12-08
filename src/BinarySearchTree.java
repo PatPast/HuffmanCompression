@@ -10,14 +10,14 @@ public abstract class BinarySearchTree extends BinaryTree {
     public void addNode(Object i) {
         if (this.compareTo(i) > 0){
             if (this.left == null) {
-                this.left = new BinaryTree(i);
+                this.left = new BinarySearchTreeString(i);
                 // System.err.println(i + " fils g de " + this.value.toString());
             }
             else this.left.addNode(i);
         }
         else{
             if (this.right == null) {
-                this.right = new BinaryTree(i);
+                this.right = new BinarySearchTreeString(i);
                 // System.err.println(i + " fils d de " + this.value.toString());
             }
             else this.right.addNode(i);
