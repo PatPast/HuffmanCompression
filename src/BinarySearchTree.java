@@ -34,20 +34,57 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
+    protected static Object findMax(BinarySearchTree subTree) {
+        if (subTree.right == null)
+            return subTree.value;
+        else
+            return findMax(subTree.right);
+    }
+
     @Override
-    public void removeNode(Object j) {
-        Comparable i = (Comparable) j;
-        if (this.compareTo(i) > 0){
-            if (this.left != null ) 
-                if (this.left.isLeaf()) this.left = null;
-                else this.left.removeNode(i);
+    public void removeNode(Object i) {
+        if (this.compareTo(i) > 0 && this.left != null) {
+            if (this.left.compareTo(i) == 0) {
+                if (this.left.isLeaf())
+                    this.left = null;
+                else if (this.left.left == null) {
+                    this.left = this.left.right;
+                    this.left.right = null;
+                }
+                else if (this.left.right == null) {
+                    this.left = this.left.left;
+                    this.left.left = null;
+                }
+                else {
+                    Object max = findMax(this.left);
+                    this.left.value = max;
+                    this.left.removeNode(i);
+                }
+            }
+            else
+                this.left.removeNode(i);
         }
-        else{
-            if (this.right != null ) 
-                if (this.right.isLeaf()) this.right = null;
-                else this.right.removeNode(i);
+        else if (this.compareTo(i) < 0 && this.right != null) {
+            if (this.right.compareTo(i) == 0) {
+                if (this.right.isLeaf())
+                    this.right = null;
+                else if (this.right.left == null) {
+                    this.right = this.right.right;
+                    this.right.right = null;
+                }
+                else if (this.right.right == null) {
+                    this.right = this.right.left;
+                    this.right.left = null;
+                }
+                else {
+                    Object max = findMax(this.right);
+                    this.right.value = max;
+                    this.right.removeNode(i);
+                }
+            }
+            else
+                this.right.removeNode(i);
         }
-        
     }
 
     @Override
