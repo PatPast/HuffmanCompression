@@ -4,13 +4,13 @@ public class BinarySearchTreeString extends BinarySearchTree {
         super(i);
     }
 
-    public int compareTo(Object i){
-        return ((String)this.value).compareTo((String)i);
-    }
-
-    public BinarySearchTree newNode(Object i) {
-        return new BinarySearchTreeString(i);
-    }
+    // public int compareTo(Object i){
+    //     return ((String)this.value).compareTo((String)i);
+    // }
+    //
+    // public BinarySearchTree newNode(Object i) {
+    //     return new BinarySearchTreeString(i);
+    // }
 
     public static void main(String[] args) {
         System.out.println("Test d’arbre binaire de recherche de chaines de caractères");
