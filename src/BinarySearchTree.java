@@ -2,8 +2,16 @@ import java.util.Random;
 
 public class BinarySearchTree extends BinaryTree {
 
+    protected BinarySearchTree left, right;
     BinarySearchTree(Object i){
         super(i);
+    }
+
+    public String display(int depth){
+        String res = this.value + "\n";
+        if (this.left != null) res += "\t".repeat(depth) + "l " + this.left.display(depth+1);
+        if (this.right != null) res += "\t".repeat(depth) + "r " + this.right.display(depth+1);
+        return res;
     }
 
     @Override
