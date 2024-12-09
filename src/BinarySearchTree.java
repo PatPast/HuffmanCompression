@@ -7,8 +7,7 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     @Override
-    public void addNode(Object j) {
-        Comparable i = (Comparable) j;
+    public void addNode(Object i) {
         if (this.compareTo(i) > 0){
             if (this.left == null) {
                 // this.left = newNode(i);
@@ -40,11 +39,11 @@ public class BinarySearchTree extends BinaryTree {
                 if (this.right.isLeaf()) this.right = null;
                 else this.right.removeNode(i);
         }
+        
     }
 
     @Override
-    public boolean exists(Object j) {
-        Comparable i = (Comparable) j;
+    public boolean exists(Object i) {
         if (this.compareTo(i) == 0)
             return true;
         boolean is_found = false;
@@ -55,12 +54,9 @@ public class BinarySearchTree extends BinaryTree {
         return is_found;
     }
 
-    public int compareTo(Object j) {
-        Comparable i = (Comparable) j;
-        return ((Comparable)this.value).compareTo(i);
+    public int compareTo(Object i) {
+        return ((Comparable)this.value).compareTo((Comparable)i);
     }
-    // public abstract int compareTo(Object i);
-    // public abstract BinarySearchTree newNode(Object i);
 
     public static void main(String[] args) {
         System.out.println("Test d’arbre binaire de recherche de chaines de caractères");
