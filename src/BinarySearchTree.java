@@ -96,5 +96,35 @@ public class BinarySearchTree extends BinaryTree {
             a.removeNode(c);
             System.out.println(a);
         }
+
+        System.out.println("Test d’arbre binaire de recherche d’entiers");
+
+        System.out.println("\nCréation de l’arbre et ajout de nœuds");
+        BinarySearchTree b = new BinarySearchTree(5);
+        b.addNode(4);
+        b.addNode(6);
+        b.addNode(2);
+        b.addNode(12);
+        b.addNode(22);
+        b.addNode(22);
+        b.addNode(22);
+
+        System.out.println("\nAffichage");
+        System.out.println(b);
+
+        System.out.println("\nTest d’existence de nœuds");
+        for(int i = 0; i < 8; i++){
+            System.out.println(i + " dans l’arbre ? " + b.exists(i));
+        }
+
+        System.out.println("\nTest du calcul de hauteur");
+        System.out.println(b.getHeight());
+        
+        Integer[] tests_suppression_int = {22,22,5,32,6};
+        for (int i : tests_suppression_int) {
+            System.out.println("\nTest de suppression d’un nœud " + i);
+            b.removeNode(i);
+            System.out.println(b);
+        }
     }
 }
