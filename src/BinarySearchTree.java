@@ -14,6 +14,10 @@ public class BinarySearchTree extends BinaryTree {
         return res;
     }
 
+    protected boolean isLeaf(){
+        return this.left == null && this.right == null;
+    }
+
     @Override
     public void addNode(Object i) {
         if (this.compareTo(i) > 0){
@@ -161,7 +165,7 @@ public class BinarySearchTree extends BinaryTree {
         System.out.println("\nTest du calcul de hauteur");
         System.out.println(b.getHeight());
         
-        Integer[] tests_suppression_int = {22,22,5,32,6};
+        Integer[] tests_suppression_int = {22,22,5,32,6,4};
         for (int i : tests_suppression_int) {
             System.out.println("\nTest de suppression d’un nœud " + i);
             b.removeNode(i);
