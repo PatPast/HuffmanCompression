@@ -5,7 +5,6 @@ public class BinaryTree implements Tree{
     protected BinaryTree left, right;
     BinaryTree(Object i){
         this.value = i;
-        //this.height = 0;
     }
 
     @Override
@@ -15,14 +14,12 @@ public class BinaryTree implements Tree{
         if (whichSide == 0){
             if (this.left == null) {
                 this.left = new BinaryTree(i);
-                System.err.println(i + " fils g de " + this.value.toString());
             }
             else this.left.addNode(i);
         }
         else{
             if (this.right == null) {
                 this.right = new BinaryTree(i);
-                System.err.println(i + " fils d de " + this.value.toString());
             }
             else this.right.addNode(i);
         }
@@ -37,9 +34,7 @@ public class BinaryTree implements Tree{
         if (this.left != null){
             if (this.left.isLeaf()){
                 if (this.left.getValue() == i){ 
-                    // System.out.println("REMOVELEFT");
                     this.left = null;
-                    
                 }
             }
             else this.left.removeNode(i); 
@@ -47,9 +42,7 @@ public class BinaryTree implements Tree{
         if (this.right != null){
             if (this.right.isLeaf()){
                 if (this.right.getValue() == i){ 
-                    // System.out.println("REMOVERIGHT");
                     this.right = null;
-                    
                 }
             }
             else this.right.removeNode(i); 
@@ -99,7 +92,6 @@ public class BinaryTree implements Tree{
         String res = this.value + "\n";
         if (this.left != null) res += "\t".repeat(depth) + "l " + this.left.display(depth+1);
         if (this.right != null) res += "\t".repeat(depth) + "r " + this.right.display(depth+1);
-        //res += "\n";
         return res;
     }
 

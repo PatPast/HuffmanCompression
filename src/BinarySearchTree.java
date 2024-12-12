@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class BinarySearchTree extends BinaryTree {
 
     BinarySearchTree(Object i){
@@ -12,17 +10,13 @@ public class BinarySearchTree extends BinaryTree {
             return;
         if (this.compareTo(i) > 0){
             if (this.left == null) {
-                // this.left = newNode(i);
                 this.left = (BinaryTree) new BinarySearchTree(i);
-                // System.err.println(i + " fils g de " + this.value.toString());
             }
             else this.left.addNode(i);
         }
         else{
             if (this.right == null) {
-                // this.right = newNode(i);
                 this.right = (BinaryTree) new BinarySearchTree(i);
-                // System.err.println(i + " fils d de " + this.value.toString());
             }
             else this.right.addNode(i);
         }
