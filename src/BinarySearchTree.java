@@ -2,20 +2,8 @@ import java.util.Random;
 
 public class BinarySearchTree extends BinaryTree {
 
-    protected BinarySearchTree left, right;
     BinarySearchTree(Object i){
         super(i);
-    }
-
-    public String display(int depth){
-        String res = this.value + "\n";
-        if (this.left != null) res += "\t".repeat(depth) + "l " + this.left.display(depth+1);
-        if (this.right != null) res += "\t".repeat(depth) + "r " + this.right.display(depth+1);
-        return res;
-    }
-
-    protected boolean isLeaf(){
-        return this.left == null && this.right == null;
     }
 
     @Override
@@ -23,7 +11,7 @@ public class BinarySearchTree extends BinaryTree {
         if (this.compareTo(i) > 0){
             if (this.left == null) {
                 // this.left = newNode(i);
-                this.left = new BinarySearchTree(i);
+                this.left = (BinaryTree) new BinarySearchTree(i);
                 // System.err.println(i + " fils g de " + this.value.toString());
             }
             else this.left.addNode(i);
@@ -31,14 +19,14 @@ public class BinarySearchTree extends BinaryTree {
         else{
             if (this.right == null) {
                 // this.right = newNode(i);
-                this.right = new BinarySearchTree(i);
+                this.right = (BinaryTree) new BinarySearchTree(i);
                 // System.err.println(i + " fils d de " + this.value.toString());
             }
             else this.right.addNode(i);
         }
     }
 
-    protected static Object findMax(BinarySearchTree subTree) {
+    protected static Object findMax(BinaryTree subTree) {
         if (subTree.right == null)
             return subTree.value;
         else
@@ -48,7 +36,7 @@ public class BinarySearchTree extends BinaryTree {
     @Override
     public void removeNode(Object i) {
         if (this.compareTo(i) > 0 && this.left != null) {
-            if (this.left.compareTo(i) == 0) {
+            if (((BinarySearchTree)this.left).compareTo(i) == 0) {
                 if (this.left.isLeaf())
                     this.left = null;
                 else if (this.left.left == null) {
@@ -69,7 +57,7 @@ public class BinarySearchTree extends BinaryTree {
                 this.left.removeNode(i);
         }
         else if (this.compareTo(i) < 0 && this.right != null) {
-            if (this.right.compareTo(i) == 0) {
+            if (((BinarySearchTree)this.right).compareTo(i) == 0) {
                 if (this.right.isLeaf())
                     this.right = null;
                 else if (this.right.left == null) {
