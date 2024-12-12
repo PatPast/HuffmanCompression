@@ -8,6 +8,8 @@ public class BinarySearchTree extends BinaryTree {
 
     @Override
     public void addNode(Object i) {
+        if (this.compareTo(i) == 0)
+            return;
         if (this.compareTo(i) > 0){
             if (this.left == null) {
                 // this.left = newNode(i);
