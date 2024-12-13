@@ -14,7 +14,7 @@
 \title {\textbf {\color {blue} Le Mans Université}\color{black}
 \\  Licence Informatique  \textit {3\ieme année}
  \\Module POO en Java
- \\ \textbf {TP2 Arbres – Suivi de projet}}
+ \\ \textbf {TP2 Arbres -- Manuel utilisateur}}
 \author{\href{mailto: matthieu.boulanger.etu@univ-lemans.fr} {Matthieu \textsc{Boulanger}}\\
       \href{mailto: patrick.pastouret.etu@univ-lemans.fr} {Patrick \textsc{Pastouret}}}
 %\\
@@ -23,95 +23,16 @@
 \begin{document}
 \maketitle
 
-\section{Objectifs de la séance}
-\begin{itemize}
-    \item implémenter la classe BinarySearchTree~;
-    \item initialiser la mise en forme des livrables.
-\end{itemize}
+\section{Arbres binaires}
 
-\section{Plan de travail}
-\begin{center}
-    \begin{tabular}{p{.3\linewidth}ccp{.3\linewidth}}
-      \toprule
-	Tâche & Responsable & Estimation temps & Commentaire \\
-      \midrule
-      \bottomrule
-   \end{tabular}
-\end{center}
+Les arbres binaires se créent au moyen de la classe \texttt{BinaryTree}, le constructeur prend comme seul argument la valeur de la racine (de type \texttt{Object}) et les n\oe uds suivants sont ajoutés aléatoirement à l'arbre via la méthode \texttt{addNode(Object valeur)}. \\
+Il est possible de les afficher via \texttt{System.out.println} ou toute autre méthode recourant à \texttt{BinaryTree.toString()}.\\
+Le test de présence d'une valeur dans l'arbre se fait au moyen de \texttt{exists(Object valeur)}. \\
+Le calcul de hauteur se fait via \texttt{getHeight()}.\\
+Enfin, une valeur peut être retirée de l'arbre avec \texttt{removeNode(Object valeur)}. La méthode ne supprime que les feuilles. Si la valeur est présente plusieurs fois, toutes les occurrences sont supprimées. Dans l'implémentation courante il n'est pas possible de supprimer la racine même si c'est le dernier n\oe ud restant.
+
+\section{Arbres binaires de recherche}
+
+Les ABR présentent les mêmes méthodes que les AB mais le comportement diffère. Ainsi \texttt{addNode(Object valeur)} insère la valeur selon la structure d'ABR et ignore les doublons. \texttt{exists(Object valeur)} retrouve la valeur par un parcours dichotomique. Enfin, \texttt{removeNode(Object valeur)} permet de supprimer une valeur située sur un n\oe ud non feuille, en conservant la structure d'ABR.
 
 \end{document}
-1. Objectifs de la Séance
-Liste des objectifs à atteindre pour cette séance :
-1. Comprendre l’énoncé du TP et analyser les concepts nécessaires.
-2. Implémenter la méthode addNode pour ajouter des éléments dans un arbre binaire de
-recherche.
-3. Tester l’ajout d’éléments et vérifier la structure de l’arbre.
-4. Documenter le code avec des commentaires clairs.
-
-2. Plan de Travail
-Répartition des tâches entre les membres du binôme :
-Tâche
-Analyser l’énoncé et
-écrire une liste de tâches.
-Implémenter la méthode
-addNode.
-Tester l’ajout d’éléments
-dans l’arbre binaire.
-Ajouter des commen-
-taires au code.
-Respons-
-able
-Étudiant A Estimation
-Temps
-15 min
-Étudiant B 1 heure
-Étudiant A 30 min
-Étudiant B 15 min
-Commentaire
-Valider la liste avec l’en-
-cadrant.
-S’assurer que la méthode
-respecte les spécifications.
-Utiliser des cas simples
-pour commencer.
-Respecter les conventions
-de documentation.
-3. Tâches Accomplies
-Tâches réalisées lors de cette séance :
-- Méthode addNode implémentée avec succès pour des arbres binaires de recherche.
-- Tests réalisés avec des exemples simples.
-- Résultat : structure correcte, vérifiée par des impressions console.
-- Documentation ajoutée au code (méthodes et classes).
-4. Problèmes Rencontrés et Solutions
-Problème
-Confusion sur la gestion des
-doublons lors de l’ajout
-dans l’arbre.
-Solution Envisagée
-Décidé d’ajouter un champ comp-
-teur pour chaque nœud.
-1
-Statut
-Résolu.Difficulté à valider l’arbre
-après insertion.
-Ajouté une méthode pour imprimer
-l’arbre en ordre croissant.
-Résolu.
-5. Objectifs pour la Prochaine Séance
-• Implémenter la méthode removeNode pour supprimer des nœuds de l’arbre.
-• Mettre en place des tests plus complexes pour vérifier la robustesse de l’arbre.
-• Commencer la partie compression de texte avec les arbres.
-6. Suivi sur Git
-Lien vers le projet GitLab : https://git.univ-lemans.fr/mon-projet
-Actions effectuées :
-- Création d’un commit pour chaque étape clé :
-- “Implémentation de addNode”
-- “Ajout de tests unitaires simples pour addNode”
-- “Ajout des commentaires au code”
-7. Remarques et Questions
-• Besoin de clarifications sur la suppression des nœuds complexes (nœuds avec deux
-enfants).
-• Suggestions pour tester des cas particuliers (exemple : arbres vides, très grands ar-
-bres).
-2
-
