@@ -1,15 +1,44 @@
+
 import java.util.Random;
 
+/**
+ * Classe représentant un arbre binaire.
+ */
 public class BinaryTree implements Tree{
+    /**
+     * La valeur du nœud actuel.
+     */
     protected Object value;
-    protected BinaryTree left, right;
-    BinaryTree(Object i){
+    /**
+     * Le sous-arbre gauche.
+     */
+    protected BinaryTree left;
+    /**
+     * Le sous-arbre right.
+     */
+    protected BinaryTree right;
+    /**
+     * Générateur de nombres aléatoires pour déterminer de quel côté ajouter un nœud.
+     */
+    private static final Random RANDOM = new Random();
+    /**
+     * Constructeur pour initialiser l'arbre binaire avec une valeur.
+     *
+     * @param i la valeur à assigner au nœud racine
+     */
+    public BinaryTree(Object i){
         this.value = i;
     }
 
+    /**
+     * Ajoute un nœud à l'arbre binaire. Le nœud est ajouté aléatoirement
+     * au sous-arbre gauche ou droit.
+     *
+     * @param i la valeur à ajouter à l'arbre
+     */
     @Override
     public void addNode(Object i) {
-        int whichSide = new Random().nextInt(2);
+        int whichSide = RANDOM.nextInt(2);
 
         if (whichSide == 0){
             if (this.left == null) {
@@ -25,10 +54,20 @@ public class BinaryTree implements Tree{
         }
     }
 
+    /**
+     * Retourne la valeur du nœud actuel.
+     *
+     * @return la valeur du nœud actuel
+     */
     public Object getValue(){
         return this.value;
     }
 
+    /**
+     * Supprime un nœud de l'arbre binaire.
+     *
+     * @param i la valeur du nœud à supprimer
+     */
     @Override
     public void removeNode(Object i) {
         if (this.left != null){
@@ -49,10 +88,21 @@ public class BinaryTree implements Tree{
         }
     }
 
+    /**
+     * Vérifie si le nœud actuel est une feuille (n'a pas de sous-arbres).
+     *
+     * @return true si le nœud est une feuille, false sinon
+     */
     protected boolean isLeaf(){
         return this.left == null && this.right == null;
     }
 
+    /**
+     * Calcule la hauteur de l'arbre de manière récursive.
+     *
+     * @param h la hauteur actuelle
+     * @return la hauteur totale de l'arbre
+     */
     protected int getHeightRecursive(int h) {
         if (this.isLeaf())
             return h + 1;
@@ -68,11 +118,22 @@ public class BinaryTree implements Tree{
             return h + 1 + rightHeight;
     }
 
+    /**
+     * Retourne la hauteur de l'arbre.
+     *
+     * @return la hauteur de l'arbre
+     */
     @Override
     public int getHeight() {
         return getHeightRecursive(0);
     }
 
+    /**
+     * Vérifie si une valeur existe dans l'arbre.
+     *
+     * @param i la valeur à vérifier
+     * @return true si la valeur existe dans l'arbre, false sinon
+     */
     @Override
     public boolean exists(Object i) {
         if (this.value == i)
@@ -84,10 +145,22 @@ public class BinaryTree implements Tree{
         return false;
     }
 
+    /**
+     * Vérifie si une valeur existe dans l'arbre.
+     *
+     * @param i la valeur à vérifier
+     * @return true si la valeur existe dans l'arbre, false sinon
+     */
     public String toString(){
         return this.display(1);
     }
 
+    /**
+     * Affiche l'arbre de manière récursive.
+     *
+     * @param level le niveau actuel de l'arbre
+     * @return une chaîne de caractères représentant l'arbre
+     */
     public String display(int depth){
         String res = this.value + "\n";
         if (this.left != null) res += "\t".repeat(depth) + "l " + this.left.display(depth+1);
@@ -95,6 +168,11 @@ public class BinaryTree implements Tree{
         return res;
     }
 
+    /**
+     * Point d'entrée principal pour tester les fonctionnalités de l'arbre binaire.
+     *
+     * @param args les arguments de la ligne de commande
+     */
     public static void main(String[] args) {
         System.out.println("Test d’arbre binaire");
 

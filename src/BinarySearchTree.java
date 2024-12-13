@@ -1,9 +1,26 @@
+
+
+
+/**
+ * Classe représentant un arbre binaire de recherche.
+ */
 public class BinarySearchTree extends BinaryTree {
 
-    BinarySearchTree(Object i){
+    /**
+     * Constructeur pour initialiser l'arbre binaire de recherche avec une valeur.
+     *
+     * @param i la valeur à assigner au nœud racine
+     */
+    public BinarySearchTree(Object i){
         super(i);
     }
-
+    
+    /**
+     * Ajoute un nœud à l'arbre binaire de recherche. Le nœud est ajouté
+     * à la position correcte pour maintenir l'ordre.
+     *
+     * @param i la valeur à ajouter à l'arbre
+     */
     @Override
     public void addNode(Object i) {
         if (this.compareTo(i) == 0)
@@ -22,6 +39,12 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
+    /**
+     * Trouve la valeur maximale dans un sous-arbre.
+     *
+     * @param subTree le sous-arbre dans lequel chercher la valeur maximale
+     * @return la valeur maximale trouvée dans le sous-arbre
+     */
     protected static Object findMax(BinaryTree subTree) {
         if (subTree.right == null)
             return subTree.value;
@@ -29,6 +52,11 @@ public class BinarySearchTree extends BinaryTree {
             return findMax(subTree.right);
     }
 
+    /**
+     * Supprime un nœud de l'arbre binaire de recherche.
+     *
+     * @param i la valeur du nœud à supprimer
+     */
     @Override
     public void removeNode(Object i) {
         if (this.compareTo(i) > 0 && this.left != null) {
@@ -75,6 +103,12 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
+    /**
+     * Vérifie si une valeur existe dans l'arbre binaire de recherche.
+     *
+     * @param i la valeur à vérifier
+     * @return true si la valeur existe dans l'arbre, false sinon
+     */
     @Override
     public boolean exists(Object i) {
         if (this.compareTo(i) == 0)
@@ -87,6 +121,12 @@ public class BinarySearchTree extends BinaryTree {
         return is_found;
     }
 
+    /**
+     * Compare la valeur du nœud actuel avec une autre valeur.
+     *
+     * @param i la valeur à comparer
+     * @return un entier négatif, zéro ou un entier positif si la valeur du nœud actuel est respectivement inférieure, égale ou supérieure à la valeur spécifiée
+     */
     public int compareTo(Object i) {
         return ((Comparable)this.value).compareTo((Comparable)i);
     }
