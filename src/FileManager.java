@@ -6,7 +6,7 @@ public class FileManager {
         return new String(Files.readAllBytes(Paths.get(filePath)));
     }
     public static byte[] readFileAsBytes(String filePath) throws IOException {
-        return new Files.readAllBytes(Paths.get(filePath));
+        return Files.readAllBytes(Paths.get(filePath));
     }
     public static void writeFile(String filePath, byte[] data) throws IOException {
         Files.write(Paths.get(filePath), data);
