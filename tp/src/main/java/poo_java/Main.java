@@ -18,6 +18,7 @@ public class Main {
                 String data = FileManager.readFile(inputFile);
                 HuffmanCompression compressor = new HuffmanCompression();
                 byte[] compressedData = compressor.compress(data);
+                System.exit(0);
                 FileManager.writeFile(outputFile, compressedData);
                 System.out.println("Fichier compressé : " + outputFile);
             } else if (cmd.hasOption("d")) {
