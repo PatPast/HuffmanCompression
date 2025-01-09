@@ -14,7 +14,7 @@
 \title {\textbf {\color {blue} Le Mans Université}\color{black}
 \\  Licence Informatique  \textit {3\ieme année}
  \\Module POO en Java
- \\ \textbf {TP2 Arbres – Suivi de projet}}
+ \\ \textbf {TP Java – Suivi de projet}}
 \author{\href{mailto: matthieu.boulanger.etu@univ-lemans.fr} {Matthieu \textsc{Boulanger}}\\
       \href{mailto: patrick.pastouret.etu@univ-lemans.fr} {Patrick \textsc{Pastouret}}}
 %\\
@@ -23,14 +23,51 @@
 \begin{document}
 \maketitle
 
-\section{Objectifs de la séance}
+\section{Séance 5}
+
+\subsection{Objectifs de la séance}
+\begin{itemize}
+    \item Mettre en place la génération de \texttt{.jar} avec Maven~;
+    \item Implémenter la fonction compress.
+    \item Implémenter la fonction decompress.
+\end{itemize}
+
+\subsection{Plan de travail}
+\begin{center}
+    \begin{tabular}{p{.3\linewidth}p{.3\linewidth}p{.3\linewidth}p{.3\linewidth}}
+      \toprule
+	Tâche & Responsable & Estimation temps & Commentaire \\
+      \midrule
+      Mettre en place la génération de \texttt{.jar} avec Maven & 
+      Patrick Pastouret & 
+      1h15min & 
+      Déterminer que le plugin \texttt{shade} manquait pour l’intégration des dépendances au \texttt{.jar} a pris l’essentiel du temps \\
+      Implémenter la génération de l’arbre de Huffman &
+      Matthieu Boulanger &
+      1h15min &
+      Le point difficile a été l’utilisation des collections en Java \\
+      Implémenter la génération des codes binaires à partir de l’arbre de Huffman &
+      Patrick Pastouret &
+      45min &
+      \\
+      Améliorer le comportement de l’interface en ligne de commande & 
+      Matthieu Boulanger & 
+      20min & 
+      \\
+      \bottomrule
+   \end{tabular}
+\end{center}
+
+\section{Séance 4}
+
+\subsection{Objectifs de la séance}
 \begin{itemize}
     \item Mettre en place Maven pour pouvoir commencer le projet~;
     \item Executer le programme principal~;
     \item Implémenter la fonction compress.
 \end{itemize}
 
-\section{Plan de travail}
+\subsection{Plan de travail}
 \begin{center}
     \begin{tabular}{p{.3\linewidth}p{.3\linewidth}p{.3\linewidth}p{.3\linewidth}}
       \toprule
