@@ -13,6 +13,9 @@ public class Main {
             CommandLine cmd = parser.parse(options, args);
             String inputFile = cmd.getOptionValue("i");
             String outputFile = cmd.getOptionValue("o");
+            if (inputFile == null || outputFile == null) {
+                throw new ParseException("fichier d’entrée ou fichier de sortie manquant");
+            }
             if (cmd.hasOption("c")) {
                 // Compression
                 String data = FileManager.readFile(inputFile);
@@ -31,7 +34,10 @@ public class Main {
             } else {
                 System.out.println("Veuillez spécifier une option : --compress ou --decompress");
             }
-        } catch (ParseException | IOException e) {
+        } catch (ParseException e) {
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("tp_compression_huffman", options);
+        } catch (IOException e) {
             System.err.println("Erreur : " + e.getMessage());
         }
     }
