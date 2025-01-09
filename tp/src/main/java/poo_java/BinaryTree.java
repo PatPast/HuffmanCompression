@@ -1,4 +1,4 @@
-
+package poo_java;
 import java.util.Random;
 
 /**

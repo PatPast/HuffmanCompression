@@ -1,3 +1,4 @@
+package poo_java;
 
 /**
  * Cette interface représente une structure d'arbre générique.
