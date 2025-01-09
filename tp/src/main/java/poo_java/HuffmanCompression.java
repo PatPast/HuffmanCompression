@@ -2,6 +2,9 @@ package poo_java;
 
 
 import java.util.Hashtable;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import java.util.Enumeration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,14 +41,19 @@ public class HuffmanCompression implements Compression {
     private HuffmanNode buildHuffmanTree(Hashtable<Character, Integer> frequencyTable) {
     // Construction de l’arbre de Huffman
         HuffmanNode newNode = null;
-        ArrayList<Integer> frequencies = new ArrayList<Integer>(frequencyTable.values());
+        ArrayList<Character> characters = new ArrayList<Character>(frequencyTable.keySet());
+        // ArrayList<Integer> frequencies = new ArrayList<Integer>(frequencyTable.values());
         ArrayList<HuffmanNode> nodes = new ArrayList<HuffmanNode>();
-        for (Integer freq : frequencies) {
-            nodes.add(new HuffmanNode(freq));
+        for (Character car : characters) {
+            ImmutablePair<Character, Integer> pair = new ImmutablePair<Character, Integer>(car, frequencyTable.get(car));
+            nodes.add(new HuffmanNode(pair));
         }
         while (nodes.size() != 1) {
             Collections.sort(nodes);
-            newNode = new HuffmanNode((Integer)nodes.get(0).value + (Integer)nodes.get(1).value);
+            ImmutablePair<Character, Integer> pair = new ImmutablePair<Character, Integer>(null, 
+                (Integer)((ImmutablePair<Character, Integer>)nodes.get(0).getValue()).getValue() + 
+                (Integer)((ImmutablePair<Character, Integer>)nodes.get(1).getValue()).getValue());
+            newNode = new HuffmanNode((Integer)nodes.get(0).getValue() + (Integer)nodes.get(1).getValue());
             newNode.setLeft(nodes.get(0));
             newNode.setRight(nodes.get(1));
             nodes.remove(0);
