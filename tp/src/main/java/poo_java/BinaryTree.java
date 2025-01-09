@@ -30,6 +30,14 @@ public class BinaryTree implements Tree{
         this.value = i;
     }
 
+    public void setLeft(BinaryTree node) {
+        this.left = node;
+    }
+
+    public void setRight(BinaryTree node) {
+        this.right = node;
+    }
+
     /**
      * Ajoute un nœud à l'arbre binaire. Le nœud est ajouté aléatoirement
      * au sous-arbre gauche ou droit.
