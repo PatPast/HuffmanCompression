@@ -33,4 +33,9 @@ public interface Tree {
      * @return true si un nœud avec la valeur spécifiée existe, false sinon
      */
     public boolean exists(Object i);
+
+    public void setLeft(BinaryTree node);
+
+    public void setRight(BinaryTree node);
+
 }
