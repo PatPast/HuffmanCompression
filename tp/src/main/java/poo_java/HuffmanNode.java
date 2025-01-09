@@ -1,3 +1,5 @@
+package poo_java;
+
 public class HuffmanNode extends BinaryTree implements Comparable<HuffmanNode> {
 
     public HuffmanNode(Object i){
