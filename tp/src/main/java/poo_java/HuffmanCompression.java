@@ -32,7 +32,9 @@ public class HuffmanCompression implements Compression {
             System.out.println(key + " : " + ht.get(key));
         }
 
-        
+        this.charToCode = new Hashtable<Character, String>();
+        this.codeToChar = new Hashtable<String, Character>();
+
         // Génération de l'arbre de Huffman
         HuffmanNode huffmanTree = this.buildHuffmanTree(ht);
         generateCodes(huffmanTree, "");
@@ -42,15 +44,13 @@ public class HuffmanCompression implements Compression {
         char[] code; // tableau de bits d'un code 
         for (int i = 0, j = 0; i < data.length(); i++, j += code.length) {
             // Récupère le code binaire du caractère
-            System.err.println(this.charToCode.get('a'));
             code = this.charToCode.get(data.charAt(i)).toCharArray(); 
             for (int k = 0; k < code.length; k++) {
                 if (code[k] == '1')
                     compressedData.set(j + k);
             }
         }
-
-
+        System.out.println(compressedData.toByteArray());
         return compressedData.toByteArray();
     }
     @Override
@@ -60,17 +60,12 @@ public class HuffmanCompression implements Compression {
     }
     private void generateCodes(HuffmanNode node, String code) {
 
-        this.charToCode = new Hashtable<Character, String>();
-        this.codeToChar = new Hashtable<String, Character>();
+        
     // Génère les codes binaires pour chaque caractère
         if (node.isLeaf()) {
             this.charToCode.put(((ImmutablePair<Character, Integer>)node.getValue()).getKey(), code);
             this.codeToChar.put(code, ((ImmutablePair<Character, Integer>)node.getValue()).getKey());
             System.out.println("Code de " + ((ImmutablePair<Character, Integer>)node.getValue()).getKey() + " : " + code);
-            char test = ((ImmutablePair<Character, Integer>)node.getValue()).getKey();
-            System.out.println(this.charToCode.get(((ImmutablePair<Character, Integer>)node.getValue()).getKey()));
-            System.out.println(this.charToCode.get(test));
-            // TODO corriger le bug du code de 'a' qui retourne null
         }
         else {
             this.generateCodes((HuffmanNode)node.getLeft(), code + "0");
