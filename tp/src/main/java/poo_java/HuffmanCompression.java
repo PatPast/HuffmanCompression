@@ -45,30 +45,30 @@ public class HuffmanCompression implements Compression {
 
     // Ecriture des métadonnées (taille de la table de hashage, table de hashage (caractère, code binaire), nombre de caractères)
 
-        // taille de la table de hashage (caractère, code binaire) codée sur 8 bits
-        String tempStr = String.format("%8s", 
+        // taille de la table de hashage (caractère, code binaire) codée sur 24 bits
+        String tempStr = String.format("%24s", 
             Integer.toBinaryString(charToCode.size()))
             .replace(' ', '0');
         bitTab = tempStr.toString().toCharArray();
         for (i = 0; i < bitTab.length; i++)
             if (bitTab[i] == '1')
-                compressedData.set(bitPointer + (7-i));
+                compressedData.set(bitPointer + (23-i));
         bitPointer += bitTab.length;
-
+        
         // table de hashage (caractère, code binaire)
         for (Enumeration<Character> e = charToCode.keys(); e.hasMoreElements();) {
             Character key = e.nextElement();
-        // caractère codé sur 8 bits
-            tempStr = String.format("%8s", 
+        // caractère codé sur 24 bits
+            tempStr = String.format("%24s", 
                 Integer.toBinaryString(key)
             ).replace(' ', '0');
             bitTab = tempStr.toString().toCharArray();
             System.out.print("--> " + key + " : ");
             System.out.println(bitTab);
-            for (i = 0; i < 8; i++)
+            for (i = 0; i < 24; i++)
                 if (bitTab[i] == '1')
-                    compressedData.set(bitPointer + (7-i));
-            bitPointer += bitTab.length;
+                    compressedData.set(bitPointer + (23-i));
+            bitPointer += 24;
 
         // taille du code binaire du caractère codé sur 8 bits
             tempStr = String.format("%8s", 
@@ -80,7 +80,7 @@ public class HuffmanCompression implements Compression {
             for (i = 0; i < 8; i++)
                 if (bitTab[i] == '1')
                     compressedData.set(bitPointer + (7-i));
-            bitPointer += bitTab.length;
+            bitPointer += 8;
             
         // code binaire du caractère
             bitTab = charToCode.get(key).toCharArray();
@@ -102,7 +102,7 @@ public class HuffmanCompression implements Compression {
         for (i = 0; i < 32; i++)
             if (bitTab[i] == '1')
                 compressedData.set(bitPointer + (31-i));
-        bitPointer += bitTab.length;
+        bitPointer += 32;
 
         // Codes binaires compressé des caractères du fichier
         for (i = 0; i < data.length(); i++) {
@@ -133,22 +133,22 @@ public class HuffmanCompression implements Compression {
         this.codeToChar = new Hashtable<String, Character>();
 
     // Lecture des métadonnées (taille de la table de hashage, table de hashage (caractère, code binaire), nombre de caractères)
-        // taille de la table de hashage (caractère, code binaire) codée sur 8 bits
-        for (i = 0; i < 8; i++){
+        // taille de la table de hashage (caractère, code binaire) codée sur 24 bits
+        for (i = 0; i < 24; i++){
             if (compressedData.get(bitPointer + i))
                 hashTableSize += Math.pow(2, i);
         }
-        bitPointer += 8;
+        bitPointer += 24;
 
         // table de hashage (caractère, code binaire)
         for (i = 0; i < hashTableSize; i++) {
             char key = 0;
-            // caractère codé sur 8 bits
-            for (j = 0; j < 8; j++){
+            // caractère codé sur 24 bits
+            for (j = 0; j < 24; j++){
                 if (compressedData.get(bitPointer + j))
                     key += Math.pow(2, j);
             }
-            bitPointer += 8;
+            bitPointer += 24;
 
             // taille du code binaire du caractère codé sur 8 bits
             codeSize = 0;
