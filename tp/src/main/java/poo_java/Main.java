@@ -17,8 +17,6 @@ import java.io.IOException;
 public class Main {
     // protected static final Logger logger =LogManager.getLogger();
     public static void main(String[] args) {
-
-        System.out.println("hello");
         // logger.info("Hello World");
         Options options = new Options();
         options.addOption("c", "compress", false, "Compresser un fichier");
