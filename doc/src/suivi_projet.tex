@@ -23,13 +23,36 @@
 \begin{document}
 \maketitle
 
+\section{Séance 6}
+
+\subsection{Objectifs de la séance}
+\begin{itemize}
+  \item Améliorer les classes du TP2 et du TP3~;
+  \item Implémenter la compression multimodale.
+\end{itemize}
+
+\subsection{Plan de travail}
+\begin{center}
+    \begin{tabular}{p{.3\linewidth}p{.3\linewidth}p{.3\linewidth}p{.3\linewidth}}
+      \toprule
+	Tâche & Responsable & Estimation temps & Commentaire \\
+      \midrule
+      Implémenter \texttt{decompress} & Patrick Pastouret & 3h & Hors séance \\
+      Améliorer performance de \texttt{decompress} & Matthieu Boulanger et Patrick Pastouret & 15min & Utilisation de \texttt{StringBuffer} au lieu de \texttt{String} pour éviter des allocations inutiles \\
+      Écriture d’un script shell de démo & Patrick Pastouret et Matthieu Boulanger & 20min & \\
+      Amélioration des classes utilisées & Patrick Pastouret &  & \\
+      Début d’implémentation de la compression multimodale & Matthieu Boulanger &  & \\
+      \bottomrule
+   \end{tabular}
+\end{center}
+
 \section{Séance 5}
 
 \subsection{Objectifs de la séance}
 \begin{itemize}
     \item Mettre en place la génération de \texttt{.jar} avec Maven~;
-    \item Implémenter la fonction compress.
-    \item Implémenter la fonction decompress.
+    \item Implémenter la fonction \texttt{compress}~;
+    \item Implémenter la fonction \texttt{decompress}.
 \end{itemize}
 
 \subsection{Plan de travail}
