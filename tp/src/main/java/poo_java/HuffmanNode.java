@@ -1,5 +1,7 @@
 package poo_java;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 public class HuffmanNode extends BinaryTree implements Comparable<HuffmanNode> {
 
     public HuffmanNode(Object i){
@@ -8,6 +10,8 @@ public class HuffmanNode extends BinaryTree implements Comparable<HuffmanNode> {
 
     @Override
     public int compareTo(HuffmanNode other){
-        return ((Comparable)this.value).compareTo((Comparable)other.value);
+        Object myValue = ((ImmutablePair)this.value).getValue();
+        Object otherValue = ((ImmutablePair)other.value).getValue();
+        return ((Comparable)myValue).compareTo((Comparable)otherValue);
     }
 }

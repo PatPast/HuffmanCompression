@@ -18,8 +18,6 @@ import java.io.IOException;
 public class Main {
     // protected static final Logger logger =LogManager.getLogger();
     public static void main(String[] args) {
-
-        System.out.println("hello");
         // logger.info("Hello World");
         Options options = new Options();
         options.addOption("c", "compress", false, "Compresser un fichier");
@@ -39,7 +37,6 @@ public class Main {
                 String data = FileManager.readFile(inputFile);
                 HuffmanCompression compressor = new HuffmanCompression();
                 byte[] compressedData = compressor.compress(data);
-                System.exit(0);
                 FileManager.writeFile(outputFile, compressedData);
                 System.out.println("Fichier compressé : " + outputFile);
             } else if (cmd.hasOption("d")) {

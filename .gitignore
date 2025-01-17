@@ -2,6 +2,7 @@
 *.aux
 *.log
 *.out
+*.bin
 
 *.swp
 tp/target/*
