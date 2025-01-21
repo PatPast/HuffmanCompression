@@ -4,19 +4,20 @@ import java.util.Random;
 /**
  * Classe représentant un arbre binaire.
  */
-public class BinaryTree implements Tree{
+public class BinaryTree<T extends Comparable<T>> 
+    implements Tree<T>, Comparable<BinaryTree<T>>{
     /**
      * La valeur du nœud actuel.
      */
-    protected Object value;
+    protected T value;
     /**
      * Le sous-arbre gauche.
      */
-    protected BinaryTree left;
+    protected BinaryTree<T> left;
     /**
      * Le sous-arbre right.
      */
-    protected BinaryTree right;
+    protected BinaryTree<T> right;
     /**
      * Générateur de nombres aléatoires pour déterminer de quel côté ajouter un nœud.
      */
@@ -26,23 +27,43 @@ public class BinaryTree implements Tree{
      *
      * @param i la valeur à assigner au nœud racine
      */
-    public BinaryTree(Object i){
+    public BinaryTree(T i){
         this.value = i;
     }
 
-    public void setLeft(BinaryTree node) {
+    /**
+     * Définit le sous-arbre gauche de ce nœud de l'arbre binaire.
+     *
+     * @param node le nœud à définir comme sous-arbre gauche
+     */
+    public void setLeft(BinaryTree<T> node) {
         this.left = node;
     }
 
-    public void setRight(BinaryTree node) {
+    /**
+     * Définit le sous-arbre droit de ce nœud de l'arbre binaire.
+     *
+     * @param node le nœud à définir comme sous-arbre droit
+     */
+    public void setRight(BinaryTree<T> node) {
         this.right = node;
     }
 
-    public BinaryTree getLeft() {
+    /**
+     * Retourne le sous-arbre gauche de ce nœud de l'arbre binaire.
+     *
+     * @return le sous-arbre gauche de ce nœud de l'arbre binaire
+     */
+    public BinaryTree<T> getLeft() {
         return this.left;
     }
 
-    public BinaryTree getRight() {
+    /**
+     * Retourne le sous-arbre droit de ce nœud de l'arbre binaire.
+     *
+     * @return le sous-arbre droit de ce nœud de l'arbre binaire
+     */
+    public BinaryTree<T> getRight() {
         return this.right;
     }
 
@@ -53,18 +74,18 @@ public class BinaryTree implements Tree{
      * @param i la valeur à ajouter à l'arbre
      */
     @Override
-    public void addNode(Object i) {
+    public void addNode(T i) {
         int whichSide = RANDOM.nextInt(2);
 
         if (whichSide == 0){
             if (this.left == null) {
-                this.left = new BinaryTree(i);
+                this.left = new BinaryTree<T>(i);
             }
             else this.left.addNode(i);
         }
         else{
             if (this.right == null) {
-                this.right = new BinaryTree(i);
+                this.right = new BinaryTree<T>(i);
             }
             else this.right.addNode(i);
         }
@@ -75,17 +96,18 @@ public class BinaryTree implements Tree{
      *
      * @return la valeur du nœud actuel
      */
-    public Object getValue(){
+    public T getValue(){
         return this.value;
     }
 
     /**
      * Supprime un nœud de l'arbre binaire.
+     * La suppression ne marche que pour les feuilles.
      *
      * @param i la valeur du nœud à supprimer
      */
     @Override
-    public void removeNode(Object i) {
+    public void removeNode(T i) {
         if (this.left != null){
             if (this.left.isLeaf()){
                 if (this.left.getValue() == i){ 
@@ -151,7 +173,7 @@ public class BinaryTree implements Tree{
      * @return true si la valeur existe dans l'arbre, false sinon
      */
     @Override
-    public boolean exists(Object i) {
+    public boolean exists(T i) {
         if (this.value == i)
             return true;
         if (this.left != null && this.left.exists(i))
@@ -185,15 +207,24 @@ public class BinaryTree implements Tree{
     }
 
     /**
-     * Point d'entrée principal pour tester les fonctionnalités de l'arbre binaire.
+     * Compare cet arbre binaire à un autre arbre binaire.
+     * La comparaison se fait sur la valeur du nœud.
      *
-     * @param args les arguments de la ligne de commande
+     * @param i l'arbre binaire à comparer
+     * @return un entier négatif si la valeur de ce nœud est plus petite que l'autre,
+     *         un entier positif si la valeur de ce nœud est plus grande que l'autre,
+     *         0 si les valeurs sont égales
      */
+    @Override
+    public int compareTo(BinaryTree<T> i) {
+        return this.value.compareTo(i.getValue());
+    }
+
     public static void main(String[] args) {
         System.out.println("Test d’arbre binaire");
 
         System.out.println("\nCréation de l’arbre et ajout de nœuds");
-        BinaryTree a = new BinaryTree(5);
+        BinaryTree<Integer> a = new BinaryTree<Integer>(5);
         a.addNode(4);
         a.addNode(6);
         a.addNode(2);
@@ -213,7 +244,7 @@ public class BinaryTree implements Tree{
         System.out.println("\nTest du calcul de hauteur");
         System.out.println(a.getHeight());
         
-        Integer[] tests_suppression = {22,22,5,32,6};
+        Integer[] tests_suppression = {22,22,2,32,6};
         for (int i : tests_suppression) {
             System.out.println("\nTest de suppression d’un nœud " + i);
             a.removeNode(i);
