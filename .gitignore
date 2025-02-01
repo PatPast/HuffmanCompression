@@ -6,3 +6,8 @@
 
 *.swp
 tp/target/*
+
+tp/.classpath
+tp/.project
+tp/.settings/
+tp/bin/
