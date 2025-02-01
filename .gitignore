@@ -5,9 +5,9 @@
 *.bin
 
 *.swp
-tp/target/*
+maven/target/*
 
-tp/.classpath
-tp/.project
-tp/.settings/
-tp/bin/
+maven/.classpath
+maven/.project
+maven/.settings/
+maven/bin/
