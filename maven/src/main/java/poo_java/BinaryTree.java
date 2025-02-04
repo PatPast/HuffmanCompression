@@ -15,7 +15,7 @@ public class BinaryTree<T extends Comparable<T>>
      */
     protected BinaryTree<T> left;
     /**
-     * Le sous-arbre right.
+     * Le sous-arbre droit.
      */
     protected BinaryTree<T> right;
     /**
@@ -184,10 +184,9 @@ public class BinaryTree<T extends Comparable<T>>
     }
 
     /**
-     * Vérifie si une valeur existe dans l'arbre.
+     * Affiche l'arbre.
      *
-     * @param i la valeur à vérifier
-     * @return true si la valeur existe dans l'arbre, false sinon
+     * @return une chaine de caractères représentant l'arbre
      */
     public String toString(){
         return this.display(1);

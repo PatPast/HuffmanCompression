@@ -4,6 +4,9 @@ import java.util.Hashtable;
 import java.util.PriorityQueue;
 import java.util.BitSet;
 
+/**
+ * Classe regroupant les algorithmes de compression et décompression par arbres de Huffman.
+ */
 public class HuffmanCompression implements Compression {
     private Hashtable<Character, String> charToCode; // Associe un caractère à un code
     private Hashtable<String, Character> codeToChar; // Associe un code binaire à un caractère
@@ -14,7 +17,6 @@ public class HuffmanCompression implements Compression {
      * @param data La chaîne de caractères à compresser.
      * @return Un tableau de bytes représentant les données compressées.
      */
-
     @Override
     public byte[] compress(String data) {
         int i, j;
@@ -93,15 +95,24 @@ public class HuffmanCompression implements Compression {
         return decompressedData.toString();
     }
 
+    /**
+     * Écrit les métadonnées à intégrer au fichier pour permettre la décompression,
+     * soit la taille de la table de correspondance caractère vers code, la table en question
+     * et le nombre de caractères.
+     * 
+     * @param data Données non compressées sous forme de chaine de caractères
+     * @param bits Structure à remplir bit à bit avec les métadonnées
+     * @return Pointeur sur la position où écrire dans la structure de bits.
+     */
     private int writeMetadatas(String data, BitSet bits){
-    // Ecriture des métadonnées (taille de la table de hashage, table de hashage (caractère, code binaire), nombre de caractères) 
+    // Ecriture des métadonnées (taille de la table de hachage, table de hachage (caractère, code binaire), nombre de caractères) 
 
         char[] bitTab; // tableau de bits (sous forme de caractères)
         int i; 
         int plageBits; // nombre de bits à écrire
         int bitPointer = 0; // index du bit courant
 
-        // taille de la table de hashage (caractère, code binaire) codée sur 24 bits
+        // taille de la table de hachage (caractère, code binaire) codée sur 24 bits
         plageBits = 24;
 
         bitTab = String.format("%"+plageBits+"s", 
@@ -113,7 +124,7 @@ public class HuffmanCompression implements Compression {
                 bits.set(bitPointer + (plageBits-1-i));
         bitPointer += plageBits;
         
-        // table de hashage (caractère, code binaire)
+        // table de hachage (caractère, code binaire)
         for (Character htCharacter : charToCode.keySet()) {
         // caractère codé sur 24 bits
             plageBits = 24;
@@ -163,8 +174,18 @@ public class HuffmanCompression implements Compression {
         return bitPointer;
     }
 
+    /**
+     * Lit les métadonnées intégrées au fichier pour permettre la décompression,
+     * soit la taille de la table de correspondance caractère vers code, la table en question
+     * et le nombre de caractères.
+     * 
+     * @param bits Structure de bits contenant les métadonnées en entête
+     * @return Un tableau d'entiers avec comme premier élément le nombre de caractères
+     * à décompresser et comme second élément un pointeur vers où lire ensuite dans
+     * la structure de bits
+     */
     private int[] readMetadatas(BitSet bits){
-    // Lecture des métadonnées (taille de la table de hashage, table de hashage (caractère, code binaire), nombre de caractères)
+    // Lecture des métadonnées (taille de la table de hachage, table de hachage (caractère, code binaire), nombre de caractères)
         int i, j;
         int hashTableSize = 0;
         int codeSize = 0;
@@ -174,7 +195,7 @@ public class HuffmanCompression implements Compression {
         int bitPointer = 0; // index du bit courant
         this.codeToChar = new Hashtable<String, Character>();
 
-        // taille de la table de hashage (caractère, code binaire) codée sur 24 bits
+        // taille de la table de hachage (caractère, code binaire) codée sur 24 bits
         plageBits = 24;
         for (i = 0; i < plageBits; i++){
             if (bits.get(bitPointer + i))
@@ -182,7 +203,7 @@ public class HuffmanCompression implements Compression {
         }
         bitPointer += plageBits;
 
-        // table de hashage (caractère, code binaire)
+        // table de hachage (caractère, code binaire)
         for (i = 0; i < hashTableSize; i++) {
             char key = 0;
             // caractère codé sur 24 bits
@@ -223,6 +244,13 @@ public class HuffmanCompression implements Compression {
         return new int[]{dataSize, bitPointer};
     }
         
+    /**
+     * Remplit la table de correspondance charToCode entre symboles et codes de Huffman
+     * de façon récursive.
+     * 
+     * @param node Arbre de Huffman à parcourir
+     * @param code Préfixe du code construit par les appels précédents
+     */
     private void generateCodes(HuffmanNode node, String code) {
         HuffmanTuple pair = node.getValue();
         
@@ -236,6 +264,12 @@ public class HuffmanCompression implements Compression {
         }
     }
 
+    /**
+     * Construit un arbre de Huffman d'un ensemble de symboles avec leurs fréquences.
+     *
+     * @param frequencyTable table d'association entre les symboles et les fréquences
+     * @return Le nœud racine de l'arbre de Huffman
+     */
     private HuffmanNode buildHuffmanTree(Hashtable<Character, Integer> frequencyTable) {
     // Construction de l’arbre de Huffman
         HuffmanNode newNode = null;
