@@ -195,7 +195,7 @@ public class BinaryTree<T extends Comparable<T>>
     /**
      * Affiche l'arbre de manière récursive.
      *
-     * @param level le niveau actuel de l'arbre
+     * @param depth le niveau actuel de l'arbre
      * @return une chaîne de caractères représentant l'arbre
      */
     public String display(int depth){
